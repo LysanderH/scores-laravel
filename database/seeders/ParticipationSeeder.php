@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Participation;
 use Illuminate\Database\Seeder;
 
-class TeamsSeeder extends Seeder
+class ParticipationSeeder extends Seeder
 {
     /**
      * Run the database seeds.

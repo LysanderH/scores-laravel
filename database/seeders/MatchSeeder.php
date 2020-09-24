@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Match;
 use Illuminate\Database\Seeder;
 
 class MatchSeeder extends Seeder
@@ -13,6 +14,6 @@ class MatchSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Match::factory()->count(50)->hasTeams(2)->create();
     }
 }

@@ -2,20 +2,19 @@
 
 namespace Database\Factories;
 
+use App\Models\Match;
+use App\Models\Participation;
 use App\Models\Team;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-use Faker\Generator as Faker;
-use Illuminate\Support\Collection;
-
-class TeamFactory extends Factory
+class ParticipationFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Team::class;
+    protected $model = Participation::class;
 
     /**
      * Define the model's default state.
@@ -25,9 +24,10 @@ class TeamFactory extends Factory
     public function definition()
     {
         return [
-            'name'=> 'FC ' . $this->faker->name,
-            'slug'=>$this->faker->slug,
-            'file_name'=>$this->faker->imageUrl(),
+            'team_id' => Team::factory(),
+            'match_id' => Match::factory(),
+            'goals' => $this->faker->numberBetween(0, 20),
+            'is_home'=> $this->faker->boolean
         ];
     }
 }

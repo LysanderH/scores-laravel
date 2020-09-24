@@ -5,12 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Team extends Model
+class Participation extends Model
 {
     use HasFactory;
 
-    public function matches()
-    {
-        return $this->belongsTo(Match::class);
-    }
+
 }

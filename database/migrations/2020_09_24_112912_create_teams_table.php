@@ -18,6 +18,7 @@ class CreateTeamsTable extends Migration
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->string('file_name')->unique();
+            $table->timestamps();
         });
     }
 
