@@ -11,6 +11,6 @@ class Team extends Model
 
     public function matches()
     {
-        return $this->belongsTo(Match::class);
+        return $this->belongsToMany('App\Models\Match', 'participations');
     }
 }

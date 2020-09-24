@@ -14,6 +14,6 @@ class MatchSeeder extends Seeder
      */
     public function run()
     {
-        Match::factory()->count(50)->hasTeams(2)->create();
+//        Match::factory()->count(50)->hasTeams(2)->create();
     }
 }

@@ -17,8 +17,8 @@ class CreateParticipationsTable extends Migration
             $table->id();
             $table->foreignId('match_id')->references('id')->on('matches')->onDelete('cascade');
             $table->foreignId('team_id')->references('id')->on('teams')->onDelete('cascade');
-            $table->integer('goals');
-            $table->boolean('is_home');
+            $table->integer('goals', false, true)->default(0);
+            $table->boolean('is_home')->default(true);
             $table->timestamps();
         });
     }

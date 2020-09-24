@@ -9,8 +9,8 @@ class Match extends Model
 {
     use HasFactory;
 
-    public function team()
+    public function teams()
     {
-        return $this->hasMany(Team::class);
+        return $this->belongsToMany('App\Models\Team', 'participations');
     }
 }
