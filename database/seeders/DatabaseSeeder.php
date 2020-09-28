@@ -15,15 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-<<<<<<< HEAD
 
-=======
-        Participation::factory()->count(50)->create();
-
-
-//        $this->call([
-////            TeamSeeder::class
-//        ]);
->>>>>>> master
     }
 }
