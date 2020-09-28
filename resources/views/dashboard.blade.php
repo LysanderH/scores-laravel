@@ -60,7 +60,7 @@
         {{--        Si pas de match trouvés--}}
         <p>Aucun match n’a été joué à ce jour</p>
     </section>
-    @if(\Illuminate\Support\Facades\Auth::user()->is_admin)
+    @if(auth()->user()->is_admin)
         <form action="/match/create" method="post">
             @csrf
             <label for="date">Date du match</label>
