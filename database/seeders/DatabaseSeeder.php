@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Participation;
 use App\Models\Team;
 use Illuminate\Database\Seeder;
 
@@ -14,8 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            TeamSeeder::class
-        ]);
+
     }
 }

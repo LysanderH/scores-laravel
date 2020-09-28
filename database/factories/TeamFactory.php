@@ -25,9 +25,9 @@ class TeamFactory extends Factory
     public function definition()
     {
         return [
-            'name'=> 'FC ' . $this->faker->name,
-            'slug'=>$this->faker->slug,
-            'file_name'=>$this->faker->imageUrl(),
+            'name' => 'FC ' . $this->faker->name,
+            'slug' => $this->faker->slug,
+            'file_name' => $this->faker->imageUrl(),
         ];
     }
 }
