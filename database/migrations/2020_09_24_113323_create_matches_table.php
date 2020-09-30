@@ -16,7 +16,7 @@ class CreateMatchesTable extends Migration
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
             $table->string('slug')->unique();
-            $table->dateTime('date');
+            $table->dateTime('played_at');
             $table->timestamps();
         });
     }

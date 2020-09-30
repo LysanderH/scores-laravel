@@ -9,6 +9,11 @@ class Team extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'slug',
+        'date'
+    ];
+
     public function matches()
     {
         return $this->belongsToMany('App\Models\Match', 'participations');

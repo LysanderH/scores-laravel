@@ -14,6 +14,6 @@ class TeamSeeder extends Seeder
      */
     public function run()
     {
-
+        Team::factory()->times(15)->create();
     }
 }

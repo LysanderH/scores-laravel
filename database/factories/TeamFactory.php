@@ -24,10 +24,12 @@ class TeamFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->unique(true)->country;
+        $slug = mb_strtoupper(mb_substr($name, 0, 3));
         return [
-            'name' => 'FC ' . $this->faker->name,
-            'slug' => $this->faker->slug,
-            'file_name' => $this->faker->imageUrl(),
+            'name' => $name,
+            'slug' => $slug,
+            'file_name' => $this->faker->imageUrl(50, 50, 'abstract')
         ];
     }
 }
