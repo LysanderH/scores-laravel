@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class MatchController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,7 @@ class MatchController extends Controller
      */
     public function index()
     {
-        //
+        return view('matches.create');
     }
 
     /**
@@ -24,13 +29,13 @@ class MatchController extends Controller
      */
     public function create()
     {
-        //
+        return view('matches.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +46,7 @@ class MatchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Match  $match
+     * @param \App\Models\Match $match
      * @return \Illuminate\Http\Response
      */
     public function show(Match $match)
@@ -52,7 +57,7 @@ class MatchController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Match  $match
+     * @param \App\Models\Match $match
      * @return \Illuminate\Http\Response
      */
     public function edit(Match $match)
@@ -63,8 +68,8 @@ class MatchController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Match  $match
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Match $match
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Match $match)
@@ -75,7 +80,7 @@ class MatchController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Match  $match
+     * @param \App\Models\Match $match
      * @return \Illuminate\Http\Response
      */
     public function destroy(Match $match)

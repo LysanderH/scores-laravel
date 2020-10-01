@@ -19,5 +19,8 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::resource('/matches', MatchController::class);
-Route::resource('/teams', TeamController::class);
+//Route::get('/match/create', [MatchController::class, 'create'])->middleware('auth');
+//Route::get('/team/create', [MatchController::class, 'create'])->middleware('auth');
+
+Route::resource('/matches', MatchController::class)->middleware('auth');
+Route::resource('/teams', TeamController::class)->middleware('auth');
