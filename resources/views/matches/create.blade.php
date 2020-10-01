@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    {{Auth::user()->isAdministrator}}
     <h1>Ajouter une partie</h1>
     <form action="/matches" method="post">
         @csrf

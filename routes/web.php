@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\TeamController;
+use App\Models\Match;
+use App\Models\Team;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +24,5 @@ Route::get('/', function () {
 //Route::get('/match/create', [MatchController::class, 'create'])->middleware('auth');
 //Route::get('/team/create', [MatchController::class, 'create'])->middleware('auth');
 
-Route::resource('/matches', MatchController::class)->middleware('auth');
-Route::resource('/teams', TeamController::class)->middleware('auth');
+Route::resource('/matches', MatchController::class)->middleware(['auth', 'can:create,'. Match::class]);
+Route::resource('/teams', TeamController::class)->middleware(['auth', 'can:create,'. Team::class]);

@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 
 class User extends Authenticatable
 {
@@ -47,8 +49,17 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'role_user');
     }
 
-    public function isAdministrator()
+    public function getisAdministratorAttribute()
     {
-        return $this->roles()->where('name', 'Administrator')->exists();
+//        $userRole = $this->roles->first()->name;
+////        dd($userRole);
+//        return $userRole === "administrator";
+
+        return $this->roles->pluck('name')->contains('administrator');
+    }
+
+    public function getisTeamManagerAttribute()
+    {
+        return $this->roles->pluck('name')->contains('team-manager');
     }
 }

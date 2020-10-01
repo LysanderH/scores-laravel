@@ -61,9 +61,23 @@
         <p>Aucun match n’a été joué à ce jour</p>
     </section>
     {{--    @dd(\Illuminate\Support\Facades\Auth::user()->isAdministrator())--}}
-{{--    @auth()--}}
-{{--        @if(Auth::user()->isAdministrator())--}}
-{{-- --}}
-{{--        @endif--}}
-{{--    @endauth--}}
+    {{--    @auth()--}}
+    {{--        @if(Auth::user()->isAdministrator())--}}
+    {{-- --}}
+    {{--        @endif--}}
+    {{--    @endauth--}}
+    @canany(['add-match', 'add-team'])
+        <nav>
+            <h2>Administration des matches et des équipes</h2>
+            <ul>
+                @can('add-team')
+                    <li><a href="{{route('teams.create')}}">Add team</a></li>
+                @endcan
+                @can('add-match')
+                    <li><a href="{{route('matches.create')}}">Add match</a></li>
+                @endcan
+            </ul>
+        </nav>
+
+    @endcanany
 @endsection
