@@ -64,7 +64,10 @@
         <h2>Teams</h2>
         <ul class="teams__list">
             @foreach($teams as $team)
-                <li class="teams__item">{{$team->name}}</li>
+                <li class="teams__item">
+{{--                    <img src="{{$team->file_name}}" alt="" width="50" height="50">--}}
+                    <span>{{$team->name}}</span>
+                </li>
             @endforeach
         </ul>
     </section>
