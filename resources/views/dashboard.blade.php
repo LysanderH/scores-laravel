@@ -60,6 +60,14 @@
         {{--        Si pas de match trouvés--}}
         <p>Aucun match n’a été joué à ce jour</p>
     </section>
+    <section class="teams">
+        <h2>Teams</h2>
+        <ul class="teams__list">
+            @foreach($teams as $team)
+                <li class="teams__item">{{$team->name}}</li>
+            @endforeach
+        </ul>
+    </section>
     {{--    @dd(\Illuminate\Support\Facades\Auth::user()->isAdministrator())--}}
     {{--    @auth()--}}
     {{--        @if(Auth::user()->isAdministrator())--}}

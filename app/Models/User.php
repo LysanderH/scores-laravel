@@ -49,7 +49,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'role_user');
     }
 
-    public function getisAdministratorAttribute()
+    public function getIsAdministratorAttribute()
     {
 //        $userRole = $this->roles->first()->name;
 ////        dd($userRole);
@@ -58,7 +58,7 @@ class User extends Authenticatable
         return $this->roles->pluck('name')->contains('administrator');
     }
 
-    public function getisTeamManagerAttribute()
+    public function getIsTeamManagerAttribute()
     {
         return $this->roles->pluck('name')->contains('team-manager');
     }

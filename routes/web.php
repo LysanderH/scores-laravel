@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\TeamController;
 use App\Models\Match;
@@ -17,12 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', [DashboardController::class, 'index']);
 
 //Route::get('/match/create', [MatchController::class, 'create'])->middleware('auth');
 //Route::get('/team/create', [MatchController::class, 'create'])->middleware('auth');
 
-Route::resource('/matches', MatchController::class)->middleware(['auth', 'can:create,'. Match::class]);
-Route::resource('/teams', TeamController::class)->middleware(['auth', 'can:create,'. Team::class]);
+Route::resource('/matches', MatchController::class)->middleware(['auth', 'can:create,' . Match::class]);
+Route::resource('/teams', TeamController::class)->middleware(['auth', 'can:create,' . Team::class]);
