@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MatchController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,5 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::resource('matches', MatchController::class);
+Route::resource('/matches', MatchController::class);
+Route::resource('/teams', TeamController::class);
