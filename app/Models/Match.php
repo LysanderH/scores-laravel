@@ -20,6 +20,7 @@ class Match extends Model
     {
 //        dd($this->teams->filter(function ($team){ return $team->pivot->is_home === 1;}));
         return $this->teams->filter(function ($team) {
+            dd($team->pivot->match_id);
             return $team->pivot->is_home === 1;
         })->first()->name;
     }

@@ -9,5 +9,5 @@ class Participation extends Model
 {
     use HasFactory;
 
-
+    protected $guarded = [];
 }

@@ -70,12 +70,12 @@
                         <td>{{\Carbon\Carbon::createFromDate($match->played_at)->format('d/m/Y')}}</td>
                         <td>{{$match->home_team_name}}</td>
                         <td>{{$match->home_team_goals}}</td>
-                        <td>{{$match->away_team_goals}}</td>
                         <td>{{$match->away_team_name}}</td>
+                        <td>{{$match->away_team_goals}}</td>
                     </tr>
                 @endforeach
-            @else
                 <tr>
+            @else
                     <td>Pas de match joué jusqu'à présent</td>
                 </tr>
             @endif
@@ -93,8 +93,8 @@
                         {{--                    <img src="{{$team->file_name}}" alt="" width="50" height="50">--}}
                         <span>{{$team->name}}</span>
                     </li>
-                @endforeach
             @else
+                @endforeach
                 <li>Pas d'équipes pour le moment</li>
             @endif
         </ul>
