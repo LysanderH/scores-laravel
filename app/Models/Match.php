@@ -9,19 +9,22 @@ class Match extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function teams()
     {
-        return $this->belongsToMany('App\Models\Team', 'participations');
+        return $this->belongsToMany('App\Models\Team', 'participations')->withPivot('goals', 'is_home');
     }
 
-    public function getHomeTeamAttribute()
+    public function getHomeTeamNameAttribute()
     {
+//        dd($this->teams->filter(function ($team){ return $team->pivot->is_home === 1;}));
         return $this->teams->filter(function ($team) {
             return $team->pivot->is_home === 1;
         })->first()->name;
     }
 
-    public function getAwayTeamAttribute()
+    public function getAwayTeamNameAttribute()
     {
         return $this->teams->filter(function ($team) {
             return $team->pivot->is_home === 0;

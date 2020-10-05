@@ -14,7 +14,7 @@ class StoreMatchRequest extends FormRequest
     public function authorize()
     {
 //        Hier den check machen ob admin oder nicht
-        return false;
+        return $this->user()->isAdministrator;
     }
 
     /**
@@ -25,7 +25,11 @@ class StoreMatchRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'played_at'=>'date',
+            'home-team' => 'string|different:away-team-slug',
+            'home-team-goals' => 'numeric|max:20',
+            'away-team' => 'string',
+            'away-team-goals' => 'numeric|max:20'
         ];
     }
 }

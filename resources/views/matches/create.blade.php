@@ -4,7 +4,7 @@
     <form action="/matches" method="post">
         @csrf
         <label for="date">Date du match</label>
-        <input type="date" id="date" name="date">
+        <input type="date" id="date" name="played_at">
 
         {{-- Home Team --}}
         <fieldset>

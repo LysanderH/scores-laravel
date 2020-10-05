@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MatchCreated;
+use App\Http\Requests\StoreMatchRequest;
 use App\Models\Match;
 use App\Models\Team;
 use Illuminate\Http\Request;
@@ -32,7 +34,6 @@ class MatchController extends Controller
     public function create()
     {
         $teams = Team::all();
-
         return view('matches.create', compact('teams'));
     }
 
@@ -42,9 +43,24 @@ class MatchController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMatchRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+
+        $homeTeam = Team::where('slug', strtoupper($validatedData['home-team']))->first();
+        $awayTeam = Team::where('slug', strtoupper($validatedData['away-team']))->first();
+
+        $match = Match::create([
+            'played_at' => $validatedData['played_at'],
+            'slug' => strtoupper($homeTeam->slug . '-' . $awayTeam->slug)
+        ]);
+
+        $match->teams()->attach($homeTeam->id, ['is_home'=> 1, 'goals'=> $validatedData['home-team-goals']]);
+        $match->teams()->attach($awayTeam->id, ['is_home'=> 0, 'goals'=> $validatedData['away-team-goals']]);
+
+        event(new MatchCreated($match));
+
+        return redirect('/');
     }
 
     /**

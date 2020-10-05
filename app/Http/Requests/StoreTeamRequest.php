@@ -13,7 +13,7 @@ class StoreTeamRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->user()->is_administrator;
     }
 
     /**
@@ -23,8 +23,10 @@ class StoreTeamRequest extends FormRequest
      */
     public function rules()
     {
+//        dd($this->request);
         return [
-            //
+            'name' => 'string|required',
+            'file_name' => 'required|mimes:jpeg,png,jpg,svg',
         ];
     }
 }

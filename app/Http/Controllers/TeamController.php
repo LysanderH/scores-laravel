@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTeamRequest;
+use App\Models\Stat;
 use App\Models\Team;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TeamController extends Controller
 {
@@ -33,9 +37,22 @@ class TeamController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTeamRequest $request)
     {
-        //
+        $extension = $request->file_name->extension();
+        $request->file_name->storeAs('/public/', mb_strtoupper(mb_substr($request->name, 0, 3)) . "." . $extension);
+        $url = Storage::url('public/' . mb_strtoupper(mb_substr($request->name, 0, 3)) . "." . $extension);
+        $team = Team::create([
+            'name' => $request->name,
+            'slug' => mb_strtoupper(mb_substr($request->name, 0, 3)),
+            'file_name' => $url,
+        ]);
+
+        Stat::create([
+            'team_id' => $team->id,
+        ]);
+//            Session::flash('success', "Success!");
+        return redirect(route('teams.create'))->withSuccess('Parfait');
     }
 
     /**
