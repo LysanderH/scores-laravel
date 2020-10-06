@@ -21,16 +21,16 @@
             <tbody>
             {{--            @dd($stats)--}}
             @if(isset($stats))
-                <?php
+                @php
                 $i = 0;
-                ?>
+                @endphp
                 @foreach($stats as $stat)
                     @php
                         $i++
                     @endphp
                     <tr>
                         <td>{{$i}}</td>
-                        <td><img src="{{$stat->team->file_name}}" alt="" width="50" height="50"></td>
+                        <td><img src="{{asset($stat->team->file_name)}}" alt="" width="50" height="50"></td>
                         <th scope="row">{{$stat->team->name}}</th>
                         <td>{{$stat->games}}</td>
                         <td>{{$stat->points}}</td>
@@ -70,13 +70,13 @@
                         <td>{{\Carbon\Carbon::createFromDate($match->played_at)->format('d/m/Y')}}</td>
                         <td>{{$match->home_team_name}}</td>
                         <td>{{$match->home_team_goals}}</td>
-                        <td>{{$match->away_team_name}}</td>
                         <td>{{$match->away_team_goals}}</td>
+                        <td>{{$match->away_team_name}}</td>
                     </tr>
                 @endforeach
                 <tr>
-            @else
-                    <td>Pas de match joué jusqu'à présent</td>
+                    @else
+                        <td>Pas de match joué jusqu'à présent</td>
                 </tr>
             @endif
             </tbody>
@@ -93,8 +93,8 @@
                         {{--                    <img src="{{$team->file_name}}" alt="" width="50" height="50">--}}
                         <span>{{$team->name}}</span>
                     </li>
-            @else
                 @endforeach
+            @else
                 <li>Pas d'équipes pour le moment</li>
             @endif
         </ul>

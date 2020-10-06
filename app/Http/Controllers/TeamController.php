@@ -52,7 +52,7 @@ class TeamController extends Controller
             'team_id' => $team->id,
         ]);
 //            Session::flash('success', "Success!");
-        return redirect(route('teams.create'))->withSuccess('Parfait');
+        return redirect('/');
     }
 
     /**
