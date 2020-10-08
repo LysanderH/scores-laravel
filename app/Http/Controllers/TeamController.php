@@ -8,6 +8,7 @@ use App\Models\Team;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class TeamController extends Controller
 {
@@ -40,12 +41,16 @@ class TeamController extends Controller
     public function store(StoreTeamRequest $request)
     {
         $extension = $request->file_name->extension();
-        $request->file_name->storeAs('/public/', mb_strtoupper(mb_substr($request->name, 0, 3)) . "." . $extension);
-        $url = Storage::url('public/' . mb_strtoupper(mb_substr($request->name, 0, 3)) . "." . $extension);
+        $request->file_name->storeAs('team-logo/original', mb_strtoupper(mb_substr($request->name, 0, 3)) . "." . $extension);
+        $fileName = mb_strtoupper(mb_substr($request->name, 0, 3)) . "_50x50." . $extension;
+        $image = Image::make($request->file_name);
+        $image->resize(50, 50);
+        Storage::disk('local')->makeDirectory('public/team-logo/resized');
+        $image->save(public_path('\storage\team-logo\resized/' . mb_strtoupper(mb_substr($request->name, 0, 3)) . "_50x50." . $extension));
         $team = Team::create([
             'name' => $request->name,
             'slug' => mb_strtoupper(mb_substr($request->name, 0, 3)),
-            'file_name' => $url,
+            'file_name' => $fileName,
         ]);
 
         Stat::create([

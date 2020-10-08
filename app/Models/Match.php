@@ -45,6 +45,4 @@ class Match extends Model
             return $team->pivot->is_home === 0;
         })->first()->pivot->goals;
     }
-
-//    public function
 }

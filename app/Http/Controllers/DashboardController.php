@@ -11,9 +11,14 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $teams = Team::all()->sortBy('name');
-        $matches = Match::all();
-        $stats = Stat::all()->sortByDesc('points');
+
+        $teams = Team::with('matches')->get()->sortBy('name');
+        $matches = Match::with('teams')->get();
+        if (isset($_GET['sortStandings'])){
+            $stats = Stat::with('team')->get()->sortBy($_GET['sortStandings']);
+        } else {
+            $stats = Stat::with('team')->get()->sortByDesc('points');
+        }
         return view('dashboard', compact(['teams', 'matches', 'stats']));
     }
 }

@@ -56,7 +56,7 @@ class UpdateTeamStats
                 if ($team->goalsMadeInMatch($match) > $match->teams[0]->goalsMadeInMatch($match)) {
                     $statsForTeam->wins += 1;
                     $statsForTeam->points += 3;
-                } elseif ($team->goalsMadeInMatch($match) < $match->teams[1]->goalsMadeInMatch($match)) {
+                } elseif ($team->goalsMadeInMatch($match) < $match->teams[0]->goalsMadeInMatch($match)) {
                     $statsForTeam->losses += 1;
                 } else {
                     $statsForTeam->draws += 1;

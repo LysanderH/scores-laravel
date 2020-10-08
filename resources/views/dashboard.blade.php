@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
-    <h1>Classement du championnat</h1>
-    <div>
-        <table>
-            <thead>
+    <div class="container mt-5">
+        <h1 class="display-5">Classement du championnat</h1>
+        <table class="table table-striped">
+            <thead class="thead-dark">
             <tr>
-                <td></td>
+                <th>&nbsp;</th>
                 <th scope="col">Logo</th>
-                <th scope="col">Team</th>
+                <th scope="col"><a href="#">Team</a></th>
                 <th scope="col">Games</th>
                 <th scope="col">Points</th>
                 <th scope="col">Wins</th>
@@ -21,16 +21,12 @@
             <tbody>
             {{--            @dd($stats)--}}
             @if(isset($stats))
-                @php
-                $i = 0;
-                @endphp
                 @foreach($stats as $stat)
-                    @php
-                        $i++
-                    @endphp
                     <tr>
-                        <td>{{$i}}</td>
-                        <td><img src="{{asset($stat->team->file_name)}}" alt="" width="50" height="50"></td>
+                        <td>{{$loop->index + 1}}</td>
+                        <td><img src="{{asset('storage/team-logo/resized/' . $stat->team->file_name)}}" alt=""
+                                 class="rounded" width="50"
+                                 height="50"></td>
                         <th scope="row">{{$stat->team->name}}</th>
                         <td>{{$stat->games}}</td>
                         <td>{{$stat->points}}</td>
@@ -40,7 +36,6 @@
                         <td>{{$stat->goals_for}}</td>
                         <td>{{$stat->goals_against}}</td>
                         <td>{{$stat->goals_difference}}</td>
-
                     </tr>
                 @endforeach
             @else
@@ -51,10 +46,10 @@
             </tbody>
         </table>
     </div>
-    <section>
-        <h2>Matchs joués au </h2>
-        <table>
-            <thead>
+    <section class="container mt-5">
+        <h2 class="display-5">Matchs joués au </h2>
+        <table class="table table-striped mx-auto ">
+            <thead class="thead-dark">
             <tr>
                 <th>Date</th>
                 <th>Équipe visitée</th>
@@ -66,7 +61,7 @@
             <tbody>
             @if(isset($matches))
                 @foreach($matches as $match)
-                    <tr>
+                    <tr class="">
                         <td>{{\Carbon\Carbon::createFromDate($match->played_at)->format('d/m/Y')}}</td>
                         <td>{{$match->home_team_name}}</td>
                         <td>{{$match->home_team_goals}}</td>
@@ -83,22 +78,7 @@
         </table>
         {{--        Si pas de match trouvés--}}
     </section>
-    <section class="teams">
-        <h2>Teams</h2>
-        <ul class="teams__list">
-            @if(isset($teams))
-                @foreach($teams as $team)
-                    <li class="teams__item">
-                        <img src="{{asset($team->file_name)}}" alt="" width="50" height="50">
-                        {{--                    <img src="{{$team->file_name}}" alt="" width="50" height="50">--}}
-                        <span>{{$team->name}}</span>
-                    </li>
-                @endforeach
-            @else
-                <li>Pas d'équipes pour le moment</li>
-            @endif
-        </ul>
-    </section>
+    @yield('components.tables.teams-list')
     {{--    @dd(\Illuminate\Support\Facades\Auth::user()->isAdministrator())--}}
     {{--    @auth()--}}
     {{--        @if(Auth::user()->isAdministrator())--}}
@@ -106,14 +86,14 @@
     {{--        @endif--}}
     {{--    @endauth--}}
     @canany(['add-match', 'add-team'])
-        <nav>
-            <h2>Administration des matches et des équipes</h2>
-            <ul>
+        <nav class="container mt-5">
+            <h2 class="display-5">Administration des matches et des équipes</h2>
+            <ul class="list-group">
                 @can('add-team')
-                    <li><a href="{{route('teams.create')}}">Add team</a></li>
+                    <li class="nav-item"><a href="{{route('teams.create')}}" class="nav-link">Add team</a></li>
                 @endcan
                 @can('add-match')
-                    <li><a href="{{route('matches.create')}}">Add match</a></li>
+                    <li class="nav-item"><a href="{{route('matches.create')}}" class="nav-link">Add match</a></li>
                 @endcan
             </ul>
         </nav>
