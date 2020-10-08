@@ -28,7 +28,7 @@
         @endif
         </tbody>
     </table>
-<div class="pagination">
+<div class="pagination justify-content-center">
     {{$matches->links()}}
 </div>
     {{--        Si pas de match trouvés--}}

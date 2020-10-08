@@ -29,7 +29,9 @@ class TeamController extends Controller
      */
     public function create()
     {
-        return view('teams.create');
+        $teams = Team::all()->sortByDesc('id');
+
+        return view('teams.create', compact('teams'));
     }
 
     /**
@@ -60,7 +62,7 @@ class TeamController extends Controller
             'team_id' => $team->id,
         ]);
 //            Session::flash('success', "Success!");
-        return redirect('/');
+        return redirect()->back()->withSuccess(__('L’équipe à bien été ajouté'));
     }
 
     /**

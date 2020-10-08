@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <h1 class="display-4 text-center m-5">Ajouter une équipe</h1>
-
+    @if(session('success'))
+        <x-package-info-box/>
+    @endif
     <form action="{{route('teams.store')}}" method="post" enctype="multipart/form-data"
           class="col-sm needs-validation mx-auto" style="width: 350px">
         @csrf
@@ -24,4 +26,5 @@
 
         <button type="submit" class="btn btn-primary">Soumettre</button>
     </form>
+    <x-package-team-list :teams="$teams"/>
 @endsection

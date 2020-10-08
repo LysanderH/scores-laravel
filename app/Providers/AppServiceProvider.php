@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\Components\InfoBox;
 use App\View\Components\MatchesTable;
 use App\View\Components\StatsTable;
 use App\View\Components\TeamsList;
@@ -39,5 +40,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('package-team-list', TeamsList::class);
         Blade::component('package-stats-table', StatsTable::class);
         Blade::component('package-matches-table', MatchesTable::class);
+        Blade::component('package-info-box', InfoBox::class);
     }
 }
