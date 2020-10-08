@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <h1 class="container display-4">Ajouter une partie</h1>
+    @if(session('success'))
+        <x-package-info-box/>
+    @endif
     <form action="/matches" method="post" class="container needs-validation mx-auto">
         @csrf
         <div class="form-group">

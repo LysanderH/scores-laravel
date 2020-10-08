@@ -60,7 +60,7 @@ class MatchController extends Controller
 
         event(new MatchCreated($match));
 
-        return redirect('/');
+        return redirect()->back()->withSuccess(__('Le match à bien été enregistré'));
     }
 
     /**

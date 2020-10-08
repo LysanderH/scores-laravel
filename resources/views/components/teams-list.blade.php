@@ -4,7 +4,7 @@
         @if(isset($teams))
             @foreach($teams as $team)
                 <li class="list-group-item list-group-item-action">
-                    <img src="{{asset('storage/team-logo/resized/' . $team->file_name)}}" class="rounded" alt="" height="50">
+                    <img src="{{asset('storage/team-logo/resized/' . $team->file_name)}}" class="rounded mr-1" alt="" height="50">
                     {{--                    <img src="{{$team->file_name}}" alt="" width="50" height="50">--}}
                     <span>{{$team->name}}</span>
                 </li>
