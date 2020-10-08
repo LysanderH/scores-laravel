@@ -23,7 +23,6 @@ class StoreTeamRequest extends FormRequest
      */
     public function rules()
     {
-//        dd($this->request);
         return [
             'name' => 'required|string',
             'file_name' => 'required|mimes:jpeg,png,jpg,svg',

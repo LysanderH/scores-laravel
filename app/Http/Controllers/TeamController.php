@@ -44,7 +44,10 @@ class TeamController extends Controller
         $request->file_name->storeAs('team-logo/original', mb_strtoupper(mb_substr($request->name, 0, 3)) . "." . $extension);
         $fileName = mb_strtoupper(mb_substr($request->name, 0, 3)) . "_50x50." . $extension;
         $image = Image::make($request->file_name);
-        $image->resize(50, 50);
+        $image->resize(null, 50, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
         Storage::disk('local')->makeDirectory('public/team-logo/resized');
         $image->save(public_path('\storage\team-logo\resized/' . mb_strtoupper(mb_substr($request->name, 0, 3)) . "_50x50." . $extension));
         $team = Team::create([

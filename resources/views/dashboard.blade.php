@@ -25,8 +25,7 @@
                     <tr>
                         <td>{{$loop->index + 1}}</td>
                         <td><img src="{{asset('storage/team-logo/resized/' . $stat->team->file_name)}}" alt=""
-                                 class="rounded" width="50"
-                                 height="50"></td>
+                                 class="rounded" height="50"></td>
                         <th scope="row">{{$stat->team->name}}</th>
                         <td>{{$stat->games}}</td>
                         <td>{{$stat->points}}</td>
