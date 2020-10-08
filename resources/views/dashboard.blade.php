@@ -1,17 +1,10 @@
 @extends('layouts.app')
 @section('content')
     <h1 class="display-5 text-center container">⚽ Scores ⚽</h1>
+    <x-package-stats-table :stats="$stats"/>
+    <x-package-matches-table :matches="$matches"/>
+    <x-package-team-list :teams="$teams"/>
 
-
-    <x-package-stats-table :stats="$stats" />
-    <x-package-matches-table :matches="$matches" />
-    <x-package-team-list :teams="$teams" />
-    {{--    @dd(\Illuminate\Support\Facades\Auth::user()->isAdministrator())--}}
-    {{--    @auth()--}}
-    {{--        @if(Auth::user()->isAdministrator())--}}
-    {{-- --}}
-    {{--        @endif--}}
-    {{--    @endauth--}}
     @canany(['add-match', 'add-team'])
         <nav class="container mt-5">
             <h2 class="display-5">Administration des matches et des équipes</h2>
@@ -24,6 +17,5 @@
                 @endcan
             </ul>
         </nav>
-
     @endcanany
 @endsection

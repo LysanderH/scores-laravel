@@ -1,4 +1,4 @@
-<section class="container mt-5">
+<section class="container mt-5" id="matches">
     <h2 class="display-5">Matchs joués au </h2>
     <table class="table table-striped mx-auto ">
         <thead class="thead-dark">
@@ -28,5 +28,8 @@
         @endif
         </tbody>
     </table>
+<div class="pagination">
+    {{$matches->links()}}
+</div>
     {{--        Si pas de match trouvés--}}
 </section>
