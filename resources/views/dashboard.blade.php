@@ -78,7 +78,7 @@
         </table>
         {{--        Si pas de match trouvés--}}
     </section>
-    @yield('components.tables.teams-list')
+    <x-package-team-list :teams="$teams" />
     {{--    @dd(\Illuminate\Support\Facades\Auth::user()->isAdministrator())--}}
     {{--    @auth()--}}
     {{--        @if(Auth::user()->isAdministrator())--}}
