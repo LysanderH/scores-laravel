@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\View\Components\MatchesTable;
+use App\View\Components\StatsTable;
 use App\View\Components\TeamsList;
 use Illuminate\Database\Schema\Builder;
 use Illuminate\Support\Facades\Blade;
@@ -35,5 +37,7 @@ class AppServiceProvider extends ServiceProvider
          * Register component class
          */
         Blade::component('package-team-list', TeamsList::class);
+        Blade::component('package-stats-table', StatsTable::class);
+        Blade::component('package-matches-table', MatchesTable::class);
     }
 }
