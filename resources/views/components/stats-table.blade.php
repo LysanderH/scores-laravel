@@ -5,10 +5,10 @@
         <tr>
             <th>&nbsp;</th>
             <th scope="col">Logo</th>
-            <th scope="col"><a href="#">Team</a></th>
-            <th scope="col">Games</th>
-            <th scope="col">Points</th>
-            <th scope="col">Wins</th>
+            <th scope="col"><a href="/?s={{request()->get('s') === 'team' ? 'teamAsc' : 'team'}}&m={{request()->get('m') ? request()->get('m') : ''}}">Team</a></th>
+            <th scope="col"><a href="/?s={{request()->get('s') === 'games' ? 'gamesAsc' : 'games'}}&m={{request()->get('m') ? request()->get('m') : ''}}">Games</a></th>
+            <th scope="col"><a href="/?s={{request()->get('s') === 'points' ? 'pointsAsc' : 'points'}}&m={{request()->get('m') ? request()->get('m') : ''}}">Points</a></th>
+            <th scope="col"><a href="/?s={{request()->get('s') === 'wins' ? 'winsAsc' : 'wins'}}&m={{request()->get('m') ? request()->get('m') : ''}}">Wins</a></th>
             <th scope="col">Losses</th>
             <th scope="col">Draws</th>
             <th scope="col">GF</th>
@@ -17,7 +17,6 @@
         </tr>
         </thead>
         <tbody>
-        {{--            @dd($stats)--}}
         @if(isset($stats))
             @foreach($stats as $stat)
                 <tr>
