@@ -13,6 +13,7 @@ class DashboardController extends Controller
     {
         $teams = Team::with('matches')->get()->sortBy('name');
         $matches = Match::with('teams')->orderByDesc('played_at')->simplePaginate(10)->fragment('matches');
+        $stats = Stat::with('team')->get()->sortByDesc('points');
 
         switch (\request()->get('s')) {
             case 'team':
@@ -44,7 +45,6 @@ class DashboardController extends Controller
 //        if (isset($_GET['sortStandings'])) {
 //            $stats = Stat::with('team')->get()->sortBy($_GET['sortStandings']);
 //        } else {
-//            $stats = Stat::with('team')->get()->sortByDesc('points');
 //        }
         return view('dashboard', compact(['teams', 'matches', 'stats']));
     }

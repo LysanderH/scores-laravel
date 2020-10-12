@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Events\MatchCreated;
 use App\Http\Requests\StoreMatchRequest;
+use App\Mail\MatchAdded;
 use App\Models\Match;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class MatchController extends Controller
 {

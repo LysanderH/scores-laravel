@@ -17,7 +17,8 @@
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
-        "mbezhanov/faker-provider-collection": "^1.2"
+        "mbezhanov/faker-provider-collection": "^1.2",
+        "wildbit/swiftmailer-postmark": "^3.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
