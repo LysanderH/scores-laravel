@@ -4,6 +4,9 @@
     @if(session('success'))
         <x-package-info-box/>
     @endif
+    @if(session('error'))
+        <p class="error">{{session('error')}}</p>
+    @endif
     <form action="/matches" method="post" class="container needs-validation mx-auto">
         @csrf
         <div class="form-group">

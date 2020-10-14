@@ -8,6 +8,7 @@ use App\Mail\MatchAdded;
 use App\Models\Match;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class MatchController extends Controller
@@ -48,20 +49,25 @@ class MatchController extends Controller
     public function store(StoreMatchRequest $request)
     {
         $validatedData = $request->validated();
+        DB::transaction(function () use ($validatedData) {
+            $homeTeam = Team::where('slug', strtoupper($validatedData['home-team']))->first();
+            $awayTeam = Team::where('slug', strtoupper($validatedData['away-team']))->first();
 
-        $homeTeam = Team::where('slug', strtoupper($validatedData['home-team']))->first();
-        $awayTeam = Team::where('slug', strtoupper($validatedData['away-team']))->first();
+            if (Match::where('slug', '=', strtoupper($homeTeam->slug . '-' . $awayTeam->slug))) {
+                return redirect()->back()->withErrors(__('Ce match existe déja.'));
+            }
 
-        $match = Match::create([
-            'played_at' => $validatedData['played_at'],
-            'slug' => strtoupper($homeTeam->slug . '-' . $awayTeam->slug)
-        ]);
+            $match = Match::create([
+                'played_at' => $validatedData['played_at'],
+                'slug' => strtoupper($homeTeam->slug . '-' . $awayTeam->slug)
+            ]);
 
-        $match->teams()->attach($homeTeam->id, ['is_home'=> 1, 'goals'=> $validatedData['home-team-goals']]);
-        $match->teams()->attach($awayTeam->id, ['is_home'=> 0, 'goals'=> $validatedData['away-team-goals']]);
+            $match->teams()->attach($homeTeam->id, ['is_home' => 1, 'goals' => $validatedData['home-team-goals']]);
+            $match->teams()->attach($awayTeam->id, ['is_home' => 0, 'goals' => $validatedData['away-team-goals']]);
 
-        event(new MatchCreated($match));
+            event(new MatchCreated($match));
 
+        }, 5);
         return redirect()->back()->withSuccess(__('Le match à bien été enregistré'));
     }
 
